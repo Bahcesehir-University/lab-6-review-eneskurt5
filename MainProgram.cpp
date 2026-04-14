@@ -120,7 +120,7 @@ public:
     // GPA must be between 0.0 and 4.0 (inclusive).
     // If out of range, keep current GPA.
     void setGpa(double g) {
-        if(0.0<=gpa && gpa<=4.0){
+        if(0.0<=g && g<=4.0){
             gpa = g;
             
         }
@@ -201,7 +201,6 @@ Student findBestStudent(Student arr[], int size) {
         }
     }
     // YOUR CODE HERE
-    return arr[0];
 }
 
 // ================================
