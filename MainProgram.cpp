@@ -34,29 +34,48 @@ private:
     double gpa;
 
 public:
+
     // ----- Task 1: Constructors & Destructor -----
 
     // TODO 1a: Default constructor
     // Set name to "Unknown", id to 0, gpa to 0.0
     Student() {
+        name = "Unknown";
+        id = 0;
+        gpa = 0.0;
+        
         // YOUR CODE HERE
     }
 
     // TODO 1b: Parameterized constructor
     // Initialize all three member variables from parameters
     Student(string n, int i, double g) {
+        name = n;
+        id = i;
+        gpa = g;
+        
+        
         // YOUR CODE HERE
     }
 
     // TODO 1c: Copy constructor
     // Create a deep copy of another Student object
     Student(const Student& other) {
+        name = other.name;
+        id = other.id;
+        gpa = other.gpa;
+        
+        
         // YOUR CODE HERE
     }
 
     // TODO 1d: Destructor
     // Print: "Student [name] destroyed"
     ~Student() {
+        
+        cout << "Student " << name <<" destroyed" ;
+        
+        
         // YOUR CODE HERE
     }
 
@@ -64,20 +83,22 @@ public:
 
     // TODO 2a: Getter for name
     string getName() const {
+        return name;
+        
         // YOUR CODE HERE
-        return "";
+
     }
 
     // TODO 2b: Getter for id
     int getId() const {
         // YOUR CODE HERE
-        return 0;
+        return id;
     }
 
     // TODO 2c: Getter for gpa
     double getGpa() const {
         // YOUR CODE HERE
-        return 0.0;
+        return gpa;
     }
 
     // ----- Task 3: Setters with Validation -----
@@ -85,6 +106,13 @@ public:
     // TODO 3a: Setter for name
     // Name must not be empty. If empty, keep current name.
     void setName(string n) {
+        if(!n.empty()){
+            name = n;
+            
+            
+        }
+  
+        
         // YOUR CODE HERE
     }
 
@@ -92,6 +120,11 @@ public:
     // GPA must be between 0.0 and 4.0 (inclusive).
     // If out of range, keep current GPA.
     void setGpa(double g) {
+        if(0.0<=gpa && gpa<=4.0){
+            gpa = g;
+            
+        }
+        
         // YOUR CODE HERE
     }
 
@@ -101,9 +134,15 @@ public:
     // Return the name in UPPERCASE
     // Hint: loop through each character and use toupper()
     string getFormattedName() const {
+        string result = name;
+        
+        for (int i = 0 ;i < result.length();i++){
+            result[i] = toupper(result[i]);
+            
+        }
         // YOUR CODE HERE
-        return "";
-    }
+        return result;
+    } 
 
     // ----- Task 5: Operator Overloading -----
 
@@ -111,22 +150,28 @@ public:
     // Two students are equal if they have the same id
     bool operator==(const Student& other) const {
         // YOUR CODE HERE
-        return false;
+        return id == other.id;
     }
 
     // TODO 5b: Less-than operator (<)
     // Compare by GPA (lower GPA = "less than")
     bool operator<(const Student& other) const {
+        return gpa < other.gpa;
+        
         // YOUR CODE HERE
-        return false;
+
     }
 
     // TODO 5c: Stream insertion operator (<<)
     // Format: "Student(name, ID: id, GPA: gpa)"
     // Example: "Student(Ali, ID: 101, GPA: 3.5)"
     friend ostream& operator<<(ostream& os, const Student& s) {
-        // YOUR CODE HERE
+        
+        cout << "Student("<<s.name<<", ID: "<<s.id<<", GPA: "<< s.gpa<<")";
+        
         return os;
+        
+        // YOUR CODE HERE
     }
 };
 
@@ -137,12 +182,24 @@ public:
 // TODO 6: Function Overloading - findBestStudent
 // Version 1: Takes two Student references, returns the one with higher GPA
 Student findBestStudent(const Student& a, const Student& b) {
+    if (b<a){
+        return a;
+        
+    }
+    return b;
+    
     // YOUR CODE HERE
-    return a;
 }
 
 // Version 2: Takes an array of Students and its size, returns the one with highest GPA
 Student findBestStudent(Student arr[], int size) {
+    Student best = arr[0];
+    for(int i = 1 ; i <size ;i++){
+        if (best <arr[i]){
+            best = arr[i];
+            
+        }
+    }
     // YOUR CODE HERE
     return arr[0];
 }
