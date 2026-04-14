@@ -182,7 +182,7 @@ public:
 // TODO 6: Function Overloading - findBestStudent
 // Version 1: Takes two Student references, returns the one with higher GPA
 Student findBestStudent(const Student& a, const Student& b) {
-    if (b<a){
+    if (b < a){
         return a;
         
     }
@@ -194,12 +194,14 @@ Student findBestStudent(const Student& a, const Student& b) {
 // Version 2: Takes an array of Students and its size, returns the one with highest GPA
 Student findBestStudent(Student arr[], int size) {
     Student best = arr[0];
-    for(int i = 1 ; i <size ;i++){
-        if (best <arr[i]){
+    for(int i = 1 ; i < size ;i++){
+        if (best < arr[i]){
             best = arr[i];
             
         }
+        
     }
+    return best;
     // YOUR CODE HERE
 }
 
